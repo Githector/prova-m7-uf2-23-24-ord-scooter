@@ -23,6 +23,7 @@ class Orm {
                 return $value;
             }
         }
+        return null;
     }
 
 
@@ -41,6 +42,14 @@ class Orm {
 
     public function truncate() {
         $_SESSION[$this->model] = [];
+    }
+
+    public function deleteById($id) {
+        foreach ($_SESSION[$this->model] as $key => $value) {
+            if ($value['id'] == $id) {
+                unset($_SESSION[$this->model][$key]);
+            }
+        }
     }
 }
 ?>

@@ -21,9 +21,17 @@
       </div>
       <div class="mt-2 right text-white h5 align-self-center">
 
+
+        <?php
+          if (isset($_SESSION['user'] )) {
+    
+        ?>
         <a class="text-white text-decoration-none" href="">Scooter | </a>
         <a class="text-white text-decoration-none" href="">Rent | </a>
-        <a class="text-white text-decoration-none" href="/items/list">Menu 3 | </a>
+        <a class="text-white text-decoration-none" href="/main/index">LogOut | </a>
+        <?php
+          }
+        ?>
         <a class="text-white text-decoration-none" href="/reset/run">Reset</a>
 
       </div>

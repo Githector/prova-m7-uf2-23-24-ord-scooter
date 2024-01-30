@@ -84,7 +84,7 @@
 
 
 
-                header("Location: /scooter/index");
+                header("Location: /main/index");
             }
 
     }
