@@ -36,7 +36,8 @@
           }
         }
         ?>
-        <a class="text-white text-decoration-none" href="/reset/run">Reset</a>
+        <a class="text-white text-decoration-none" href="/reset/run">Reset |</a>
+        <a class="text-white text-decoration-none" href="/items/index">Items</a>
 
       </div>
     </nav>

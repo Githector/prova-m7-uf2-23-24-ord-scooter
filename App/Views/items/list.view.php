@@ -1,38 +1,5 @@
     <div class="container col-11 mx-auto">
-        <h2>Ítems valoració</h2>
-
-        <table class="table">
-        <h2>Categories</h2>
-            <thead>
-                <tr>
-                    <th scope="col">Tram edat</th>
-                    <th scope="col">Femení</th>
-                    <th scope="col">Maculí</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="font-weight-bold">Menors de 18</td>
-                    <td class="font-weight-bold">1</td>
-                    <td class="font-weight-bold">4</td>
-                    <td></td>
-                </tr>
-                <tr class="bg-light">
-                    <td class="font-weight-bold">Entre 18 i 64</td>
-                    <td class="font-weight-bold">2</td>
-                    <td class="font-weight-bold">5</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td class="font-weight-bold">65 o més</td>
-                    <td class="font-weight-bold">3</td>
-                    <td class="font-weight-bold">6</td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-
-       
+     
 
         <table class="table">
         <h2>Ítems valoració</h2>
@@ -45,106 +12,166 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class="font-weight-bold text-danger">RUNNERS</td>
+                    <td class="font-weight-bold text-danger">ADMIN</td>
                     <td class="font-weight-bold text-danger"></td>
                     <td></td>
                 </tr>
 
                 <tr>
-                    <td>Els links del nav funcionen correctament.</td>
+                    <td>Al entrar la URL localhost la única opció que es veu al navbar és Reset</td>
                     <td>1</td>
                     <td><input type="checkbox"></td>
                 </tr>
                 <tr class="bg-light">
-                    <td>En registrar un "runner", el sistema valida si la data introduïda és anterior a l'actual i no permet fer el registre del corredor.</td>
+                    <td>Al introduir el username admin i clicar sobre "Go!" Ens porta a una vista on al menú hi podem veure les següentes opcions: Scooter, LogOut, Rents i Reset. Aquesta combinació només pot aparèixer amb l'usuari admin, per tant ha d'estar condicionada.</td>
                     <td>2</td>
                     <td><input type="checkbox"></td>
                 </tr>
                 <tr>
-                    <td>Si la data és incorrecta, es redirigeix a l'usuari al formulari i es mantenen els camps que amb anterioritat ja havia escrit (Name, surname i club).</td>
-                    <td>2</td>
+                    <td>A la part superior de la vista d'scooter, es saluda a l'usuari amb el username..</td>
+                    <td>1</td>
                     <td><input type="checkbox"></td>
                 </tr>
                 <tr class="bg-light">
-                    <td>Si la data és incorrecta, es redirigeix a l'usuari al formulari i es mostra un missatge flash informatiu (en vermell).</td>
+                    <td>L'admin (només ell) pot veure el formulari que permet crear patinets.</td>
                     <td>1</td>
                     <td><input type="checkbox"></td>
                 </tr>
                 <tr>
-                    <td>Si passa la validació de la data (entenem que la resta de camps es posen correctament) emmagatzema el "runner" a la llista de competidors.</td>
+                    <td>Els scooters que s'introdueixen al controller de reset (els de test) es visualitzen de forma correcta i de forma dinàmica amb tota la informació, inclosa la imatge.</td>
                     <td>3</td>
                     <td><input type="checkbox"></td>
                 </tr>
                 <tr class="bg-light">
-                    <td>A la llista de competidors, els runners es mostren almenys el dorsal, el nom, el gènere i el club.</td>
+                    <td>Els botons d'eliminar scooter, estan ben referenciats i funcionen correctament.</td>
                     <td>2</td>
                     <td><input type="checkbox"></td>
                 </tr>
                 <tr>
-                    <td>A la llista de competidors es mostra també l'edat correctament.</td>
+                    <td>No es possible crear una scooter sense la marca, model o preu per minut. Si ho intentem, ens mostra un missatge flash que ens informa de l'error (vermell -> ko).</td>
                     <td>2</td>
                     <td><input type="checkbox"></td>
                 </tr>
                 <tr class="bg-light">
-                    <td>A la llista de competidors es mostra també la categoria assignada de forma correcta.</td>
+                    <td>No es possible crear una scooter sense la imatge. Si ho intentem, ens mostra un missatge flash que ens informa de l'error (vermell -> ko)</td>
                     <td>2</td>
                     <td><input type="checkbox"></td>
                 </tr>
                 <tr>
-                    <td>Si s'afegeix un "runner", el sistema ens informa a través d'un missatge flash que desapareix al actualitzar la pàgina.</td>
+                    <td>Si no pot crear el patinet, retorna al formulari i recupera el text que inicialment havíem posat perquè l'usuari no l'hagi de tornar a introduir.</td>
                     <td>1</td>
                     <td><input type="checkbox"></td>
                 </tr>
                 <tr>
-                    <td class="font-weight-bold text-danger">RACE</td>
+                    <td>Si totes les dades del formulari són correctes es guarda el patinet i es mostra al llistat amb tota la informació i imatge de forma correcta,</td>
+                    <td>1</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>Els botons d'eliminar scooter, estan ben referenciats i funcionen correctament.</td>
+                    <td>1</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>L'admin tan sols veu el botó d'eliminar. Qualsevol altre botó que veu l'usuari estàndard està amagat.</td>
+                    <td>1</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>Si cliquem sobre logOut, fa desaparèixer l'usuari loguejat de la variable de sessió i ens redirigeix a la vista de login.</td>
+                    <td>1</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold text-danger">USUARI ESTÀNDARD</td>
                     <td class="font-weight-bold text-danger"></td>
                     <td></td>
                 </tr>
                 <tr class="bg-light">
-                    <td>Si no hi ha cap cursa començada, ens mostra el formulari per poder introduir el nom de la nova cursa.</td>
+                    <td>Quant entra l'usuari estàndard, aquest pot veure tots els patinets i veu la opció de llogar-los. Els botons estan ben referenciats. No veu cap altre botó. Veu, tant els patinets que s'han introduit a través del controler de reset com els que ha introduït prèviament l'admin.</td>
                     <td>1</td>
                     <td><input type="checkbox"></td>
                 </tr>
                 <tr>
-                    <td>En introduir el nom, (a la mateixa pàgina) desapareix el formulari y es mostra un de nou per anar introduint els dorsals que van arribant.</td>
-                    <td>2</td>
-                    <td><input type="checkbox"></td>
-                </tr>
-                <tr class="bg-light">
-                    <td>Apareix per pantalla el següent: Arrivals (Nom de la cursa + "Race). A continuació es mostra un missatge informant de que encara no ha arribat ningú.</td>
+                    <td>Al clicar sobre el botó "Rent" (blau) d'algun dels patinets, comença el lloguer i aquest es canvïa per un altre que permetrà finalitzar el lloguer (verd).</td>
                     <td>2</td>
                     <td><input type="checkbox"></td>
                 </tr>
                 <tr>
-                    <td>En introduir un dorsal d'un corredor desapareix el missatge que deia que no havia arribat ningú y es mostra tota la informació que mostra l'exemple. En aquest punt no cal el temps.</td>
-                    <td>3</td>
-                    <td><input type="checkbox"></td>
-                </tr>
-                <tr class="bg-light">
-                    <td>També es mostra el temps que el corredor ha emprat per realitzar la cursa.</td>
-                    <td>3</td>
-                    <td><input type="checkbox"></td>
-                </tr>
-                <tr>
-                    <td>El sistema va mostrant qualificació a mida que van arribant els participants.</td>
+                    <td>Al fer un logout, i entrar amb un altre usuari, el nou usuari no podrà finalitzar el lloguer de l'anterior usuari. Sobre el patinet que havia llogat l'anterior usuari, li apareixerà un botó de no disponibilitat (groc) que estarà inhabilitat. Cap usuari podrà tocar lloguers d'altres usuaris.</td>
                     <td>2</td>
                     <td><input type="checkbox"></td>
                 </tr>
-                <tr class="bg-light">
-                    <td>És possible canviar de pantalla a "Runners" y tornar a "Race" El sistema té memòria y sap en tot moment que ha de mostrar: O bé la pantalla inicial o bé la pantalla del transcurs de la cursa.</td>
-                    <td>3</td>
+                <tr>
+                    <td>El nou usuari podrà llogar un patinet i despres finalitzar el lloguer. Al fer-ho, el patinet tornarà a estar disponible per llogar.</td>
+                    <td>2</td>
                     <td><input type="checkbox"></td>
                 </tr>
                 <tr>
-                    <td>Al finalitzar la cursa, la informació desapareix y la pantalla "Race" tornarà a demanar el nom d'una nova cursa. Per molt que anem a Runners y tornem a "Race", la informació mostrada siempre serà l'esperada.</td>
-                    <td>3</td>
+                    <td>Cada vegada que hi ha algun canvi d'estat en el lloguer d'un patinet, s'informa a l'usuari amb un missatge flash (verd -> ok).</td>
+                    <td>2</td>
                     <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>El nou usuari podrà llogar un patinet i despres finalitzar el lloguer. </td>
+                    <td>2</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+
+                <td class="font-weight-bold text-danger">ADMIN</td>
+                    <td class="font-weight-bold text-danger"></td>
+                    <td></td>
                 </tr>
                 <tr class="bg-light">
-                    <td>El codi és net estructurat i eficient.</td>
-                    <td>6</td>
+                    <td>Al clicar sobre la opció "Rents", l'administrador veu una taula d'informació dels lloguers (finalitzats i actius). Al menys veu la marca, el model i l'usuari que ha realitzat el lloguer de forma correcta.</td>
+                    <td>1</td>
                     <td><input type="checkbox"></td>
                 </tr>
+                <tr>
+                    <td>Veu el dia i hora d'inici del lloguer de forma dinàmica i amb el mateix format. Per exemple: 31/01/2024 - 03:56:29</td>
+                    <td>2</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>Si un lloguer ha finalitzat veu el dia i la hora de finalització en el format indicat en l'anterior ítem.</td>
+                    <td>2</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>Si un lloguer no ha finalitzat, a End veurà un text en vermell: Not finished.</td>
+                    <td>2</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>Si el lloguer ha finalitzat veurà el preu. Aquest preu serà els segons que han passat multiplicats pel preu per minut. En el cas de que passi més d'un minut, el sistema ha de contar la totalitat dels segons de forma correcta. Per exemple: 1 minut i 10 segons són 70 segons.</td>
+                    <td>2</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>Si un lloguer no ha finalitzat, a Price veurà un text en vermell: Not finished.</td>
+                    <td>2</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+
+                <td class="font-weight-bold text-danger">PROTECCIÓ RUTES</td>
+                    <td class="font-weight-bold text-danger"></td>
+                    <td></td>
+                </tr>
+                <tr class="bg-light">
+                    <td>Si un usuari que no és admin intenta anar a la ruta /rent/index se'l redirigirà a la pàgina de login.</td>
+                    <td>1</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <td class="font-weight-bold text-danger">ESTRUCTURA I CODI</td>
+                    <td class="font-weight-bold text-danger"></td>
+                    <td></td>
+                </tr>
+                <tr class="bg-light">
+                    <td>Estructura codi, arquitectura...</td>
+                    <td>1</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+
                 <tr>
                     <td class="font-weight-bold text-danger">TOTAL</td>
                     <td class="font-weight-bold text-danger">40</td>
