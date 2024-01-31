@@ -4,7 +4,7 @@
 if ($params['user'] == 'admin') {
 ?>
 
-    <form action="/scooter/store" method="post" class="col-11 col-md-9 col-lg-6 col-xl-5 p-4 mt-4 mx-auto border">
+    <form action="/scooter/store" method="post" class="col-11 col-md-9 col-lg-6 col-xl-5 p-4 mt-4 mx-auto border" enctype="multipart/form-data">
 
         <h2 class="mt-2">New Scooter</h2>
 
@@ -29,14 +29,14 @@ if ($params['user'] == 'admin') {
         </div>
         <div class="mb-3">
             <label for="img" class="form-label">Image</label>
-            <input type="text" class="form-control" name="img" id="img" aria-describedby="helpId" placeholder="" value="<?php echo $params['post']['img'] ?? null ?>">
+            <input type="file" class="form-control" name="img" id="img" aria-describedby="helpId" placeholder="" value="<?php echo $params['post']['img'] ?? null ?>">
         </div>
         <div class="mb-3">
             <label for="price" class="form-label">Price per minute</label>
             <input type="number" class="form-control" name="price" id="birthdate" aria-describedby="helpId" placeholder="" value="<?php echo $params['post']['price'] ?? null ?>">
         </div>
 
-        <button type="submit" class="btn btn-primary mb-2">Save</button>
+        <button type="submit" class="btn btn-primary mb-2" name="scooter_store">Save</button>
         <button type="reset" class="btn btn-danger mb-2">Reset</button>
 
 
@@ -82,10 +82,26 @@ if ($params['user'] == 'admin') {
                             if ($params['user'] == 'admin') {
                             ?>
                                 <a class="btn btn-danger" href="/scooter/destroy/?id=<?= $scooter['id'] ?>">Remove</a>
-                            <?php
+                                <?php
                             } else {
-                            ?>
-                                <a class="btn btn-primary" href="/rent/create/?id_scooter=<?= $scooter['id'] ?>">Rent</a>
+                                if ($scooter['user_rent'] != null && $scooter['user_rent'] != $params['user']) {
+                                ?>
+                                    <a class="btn btn-warning disabled" href="">Not available</a>
+                                <?php
+                                } elseif ($scooter['user_rent'] == $params['user']) {
+                                ?>
+                                    <a class="btn btn-success" href="/rent/finish/?id_scooter=<?= $scooter['id'] ?>">Finish</a>
+
+                                <?php
+                                } else {
+
+                                ?>
+
+                                   <a class="btn btn-primary" href="/rent/store/?id_scooter=<?= $scooter['id'] ?>">Rent</a>
+                                <?php
+                                }
+                                ?>
+
                             <?php
                             }
                             ?>

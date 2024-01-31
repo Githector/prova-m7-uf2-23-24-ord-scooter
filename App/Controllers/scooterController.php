@@ -1,5 +1,6 @@
 <?php
 include_once(__DIR__ . "/../Models/Scooter.php");
+include_once(__DIR__ . "/../Core/Store.php");
 
 class scooterController extends Controller
 {
@@ -22,6 +23,8 @@ class scooterController extends Controller
                 $params['post'] = $_SESSION['post'];
                 unset($_SESSION['post']);
             }
+
+
     
             $this->render("scooter/index", $params, "site");
         }
@@ -47,4 +50,56 @@ class scooterController extends Controller
 
         header("Location: /scooter/index");
     }
+
+    public function store()
+    {
+        $scooterModel = new Scooter();
+        if(isset($_POST['scooter_store'])){
+            $brain = $_POST['brain'] ?? null;
+            $model = $_POST['model'] ?? null;
+            $img = $_POST['img'] ?? null;
+            $price = $_POST['price'] ?? null;
+
+
+            if(empty($brain) || empty($model) ||  empty($price)){
+                $_SESSION['flash']['ko'] = "All fields are required";
+                $_SESSION['post'] = $_POST;
+                header("Location: /scooter/index");
+                die();
+            }else if($_FILES['img']['name'] == null){
+                $_SESSION['flash']['ko'] = "Image is required";
+                $_SESSION['post'] = $_POST;
+                header("Location: /scooter/index");
+                die();
+            }else{ 
+                $id = $_SESSION['id_scooter']++;
+                $array = explode(".", $_FILES['img']['name']);
+                $extension = $array[count($array) - 1];
+                $nameImg = "scooter - " . $id .  "." . $extension;
+
+                $src = $_FILES['img']['tmp_name'];
+                $dst = "scooters";
+
+                if(Store::store($src, $dst, $nameImg)){
+                    $scooter = [
+                        'id' => $id,
+                        'brain' => $brain,
+                        'model' => $model,
+                        'img' => $nameImg,
+                        'price' => $price,
+                        'user_rent' => null,
+                    ];
+    
+                    $scooterModel->insert($scooter);
+                    $_SESSION['flash']['ok'] = "Scooter created";
+                }else{
+                    $_SESSION['flash']['ko'] = "Error creating scooter";
+                }
+
+                
+                header("Location: /scooter/index");
+            
+        }
+    }
+}
 }

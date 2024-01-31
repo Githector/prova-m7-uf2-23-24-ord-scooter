@@ -32,7 +32,7 @@ class Orm {
         return $data;
     }
 
-    public function updateById($data) {
+    public function update($data) {
         foreach ($_SESSION[$this->model] as $key => $value) {
             if ($value['id'] == $data['id']) {
                 $_SESSION[$this->model][$key] = $data;
