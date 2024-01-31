@@ -1,5 +1,7 @@
 <h1 class="text-center mt-3 text-danger">Hello <?= $params['user'] ?>!!!</h1>
 
+
+
 <?php
 if ($params['user'] == 'admin') {
 ?>
@@ -8,17 +10,7 @@ if ($params['user'] == 'admin') {
 
         <h2 class="mt-2">New Scooter</h2>
 
-        <?php
 
-        if (isset($params['flash']['ok'])) {
-            echo "<div class='alert alert-success' role='alert'>" . $params['flash']['ok'] . "</div>";
-            unset($params['flash']['ok']);
-        }
-        if (isset($params['flash']['ko'])) {
-            echo "<div class='alert alert-danger' role='alert'>" . $params['flash']['ko'] . "</div>";
-            unset($params['flash']['ko']);
-        }
-        ?>
         <div class="mb-3">
             <label for="brain" class="form-label">Brain</label>
             <input type="text" class="form-control" name="brain" id="brain" aria-describedby="helpId" placeholder="" value="<?php echo $params['post']['brain'] ?? null ?>">
@@ -47,6 +39,17 @@ if ($params['user'] == 'admin') {
 ?>
 
 <div class="list_scooters col-11 col-lg-10 mx-auto mt-4">
+    <?php
+
+    if (isset($params['flash']['ok'])) {
+        echo "<div class='alert alert-success' role='alert'>" . $params['flash']['ok'] . "</div>";
+        unset($params['flash']['ok']);
+    }
+    if (isset($params['flash']['ko'])) {
+        echo "<div class='alert alert-danger' role='alert'>" . $params['flash']['ko'] . "</div>";
+        unset($params['flash']['ko']);
+    }
+    ?>
     <table class="table">
         <h2>Scooter's list</h2>
         <?php
@@ -97,7 +100,7 @@ if ($params['user'] == 'admin') {
 
                                 ?>
 
-                                   <a class="btn btn-primary" href="/rent/store/?id_scooter=<?= $scooter['id'] ?>">Rent</a>
+                                    <a class="btn btn-primary" href="/rent/store/?id_scooter=<?= $scooter['id'] ?>">Rent</a>
                                 <?php
                                 }
                                 ?>

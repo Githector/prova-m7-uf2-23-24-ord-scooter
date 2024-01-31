@@ -21,6 +21,15 @@
             return null;
         }
 
+        public function getRentByIdScooter($id){
+            foreach($_SESSION['rents'] as $key => $rent){
+                if($rent['id_scooter'] == $id && $rent['end'] == null){
+                    return $rent;
+                }
+            }
+            return null;
+        }
+
 
     }
 

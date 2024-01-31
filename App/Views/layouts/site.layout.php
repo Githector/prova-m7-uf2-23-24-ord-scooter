@@ -26,11 +26,15 @@
           if (isset($_SESSION['user'] )) {
     
         ?>
-        <a class="text-white text-decoration-none" href="">Scooter | </a>
-        <a class="text-white text-decoration-none" href="">Rent | </a>
+        <a class="text-white text-decoration-none" href="/scooter/index">Scooter | </a>
         <a class="text-white text-decoration-none" href="/main/index">LogOut | </a>
         <?php
+        if($_SESSION['user'] == 'admin'){
+          ?>
+          <a class="text-white text-decoration-none" href="/rent/index">Rents | </a>
+          <?php
           }
+        }
         ?>
         <a class="text-white text-decoration-none" href="/reset/run">Reset</a>
 

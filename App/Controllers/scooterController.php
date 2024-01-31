@@ -25,7 +25,7 @@ class scooterController extends Controller
             }
 
 
-    
+
             $this->render("scooter/index", $params, "site");
         }
         }
