@@ -12,6 +12,20 @@ services:
       - bash
       - -c
       - |
-        chmod +x script.sh && \
+        chmod +x script.sh && 
         ./script.sh
-    #entrypoint: ["/var/www/html/custom-entrypoint.sh", "-D", "FOREGROUND"]
+ mysql:
+  image: mysql:latest
+  environment:
+   MYSQL_ROOT_PASSWORD: "123456"
+   MYSQL_DATABASE: "ins"
+   MYSQL_USER: "hector"
+   MYSQL_PASSWORD: "123456"
+  ports:
+   - "9999:3306"   
+ phpmyadmin:
+  image: phpmyadmin/phpmyadmin
+  environment:
+   PMA_HOST: mysql
+  ports:
+   - "8090:80"

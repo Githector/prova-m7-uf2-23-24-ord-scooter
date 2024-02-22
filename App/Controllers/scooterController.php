@@ -8,12 +8,15 @@ class scooterController extends Controller
     public function index()
     {
         $params['user'] = $_SESSION['user'] ?? null;
+        
         if($params['user'] == null){
             header("Location: /main/index");
             die();
         }else{
             $scooterModel = new Scooter();
             $params['scooters'] = $scooterModel->getAll();
+
+
             if (isset($_SESSION['flash'])) {
                 $params['flash'] = $_SESSION['flash'];
                 unset($_SESSION['flash']);
@@ -34,6 +37,7 @@ class scooterController extends Controller
     public function destroy()
     {
         $id = $_GET['id'] ?? null;
+
         if (!is_null($id)) {
             $scooterModel = new Scooter();
             $scooter = $scooterModel->getById($id);
@@ -75,6 +79,8 @@ class scooterController extends Controller
                 $id = $_SESSION['id_scooter']++;
                 $array = explode(".", $_FILES['img']['name']);
                 $extension = $array[count($array) - 1];
+
+                
                 $nameImg = "scooter - " . $id .  "." . $extension;
 
                 $src = $_FILES['img']['tmp_name'];
@@ -82,7 +88,6 @@ class scooterController extends Controller
 
                 if(Store::store($src, $dst, $nameImg)){
                     $scooter = [
-                        'id' => $id,
                         'brain' => $brain,
                         'model' => $model,
                         'img' => $nameImg,
@@ -90,7 +95,7 @@ class scooterController extends Controller
                         'user_rent' => null,
                     ];
     
-                    $scooterModel->insert($scooter);
+                    $id = $scooterModel->insert($scooter);
                     $_SESSION['flash']['ok'] = "Scooter created";
                 }else{
                     $_SESSION['flash']['ko'] = "Error creating scooter";

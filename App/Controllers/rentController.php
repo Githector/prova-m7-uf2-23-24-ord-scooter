@@ -8,11 +8,13 @@
             public function store(){
                 $rentModel = new Rent();
                 $scooterModel = new Scooter();
+
+                $start= new DateTime('now', new DateTimeZone("Europe/Madrid"));
+
                 $rent = [
-                    'id' => $_SESSION['id_rent']++,
                     'id_scooter' => $_GET['id_scooter'] ?? null,
                     'user' => $_SESSION['user'],
-                    'start' => new DateTime('now', new DateTimeZone("Europe/Madrid")),
+                    'start' => $start->format('Y-m-d H:i:s'),
                     'end' => null,
                 ];
 
@@ -23,11 +25,8 @@
 
                 $scooter = $scooterModel->getById($_GET['id_scooter']);
                 $scooter['user_rent'] = $_SESSION['user'];
-                $scooterModel->update($scooter);
-                
+                $scooterModel->insert($scooter);
 
-     
-                
                 header("Location: /scooter/index");
             }
 
@@ -36,6 +35,7 @@
                 $rentModel = new Rent();
                 $scooterModel = new Scooter();
                 $id = $_GET['id_scooter'] ?? null;
+                
                 if($id == null){
                     $_SESSION['flash']['error'] = "Rent not found";
                     header("Location: /scooter/index");
@@ -44,7 +44,11 @@
 
                 $rent = $rentModel->getRentByIdScooter($id);
 
-                if($rent == null){
+                echo "<pre>";
+                var_dump($rent);
+                echo "</pre>";
+
+                if(!$rent){
                     $_SESSION['flash']['error'] = "Rent not found";
                     header("Location: /scooter/index");
                     return;

@@ -25,7 +25,7 @@ if ($params['user'] == 'admin') {
         </div>
         <div class="mb-3">
             <label for="price" class="form-label">Price per minute</label>
-            <input type="number" class="form-control" name="price" id="birthdate" aria-describedby="helpId" placeholder="" value="<?php echo $params['post']['price'] ?? null ?>">
+            <input type="number" step="0.01" class="form-control" name="price" id="birthdate" aria-describedby="helpId" placeholder="" value="<?php echo $params['post']['price'] ?? null ?>">
         </div>
 
         <button type="submit" class="btn btn-primary mb-2" name="scooter_store">Save</button>

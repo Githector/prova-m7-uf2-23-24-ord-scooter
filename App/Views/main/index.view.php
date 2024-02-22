@@ -5,6 +5,16 @@
             <label for="username" class="font-weight-bold mb-2 fs-4">Username:</label>
             <input type="text" class="form-control" id="username" name="username">
         </div>
+        <div class="form-group mb-3">
+            <label for="password" class="font-weight-bold mb-2 fs-4">Password:</label>
+            <input type="text" class="form-control" id="password" name="password">
+        </div>
         <button type="submit" class="btn btn-primary btn-block">Go!</button>
     </form>
+    <?php 
+        if(isset($params['flash']['error'])){
+            echo "<div class='alert alert-danger mt-3' role='alert'>" . $params['flash']['error'] . "</div>";
+            unset($params['flash']['error']);
+        }
+    ?>
 </div>
