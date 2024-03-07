@@ -2,6 +2,8 @@
 include_once(__DIR__ . "/../Models/Scooter.php");
 include_once(__DIR__ . "/../Core/Store.php");
 
+use Intervention\Image\ImageManager;
+
 class scooterController extends Controller
 {
 
@@ -95,6 +97,10 @@ class scooterController extends Controller
                     ];
     
                     $id = $scooterModel->insert($scooter);
+                    $manager = ImageManager::gd();
+                    $image = $manager->read(__DIR__ . "/../../Public/Assets/scooters/" . $nameImg);
+                    $image = $image->brightness(35);
+
                     $_SESSION['flash']['ok'] = "Scooter created";
                 }else{
                     $_SESSION['flash']['ko'] = "Error creating scooter";
