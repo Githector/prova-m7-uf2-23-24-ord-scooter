@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker-php-ext-install pdo_mysql zip
+docker-php-ext-install pdo_mysql zip exif
 
 # Habilitar mod_rewrite
 a2enmod rewrite
@@ -23,6 +23,7 @@ echo 'export PATH="$PATH:/usr/local/bin"' >> ~/.bashrc
 # Comprovar que Composer s'ha instal.lat correctament
 echo "Comprovant que Composer s'ha instal.lat correctament..."
 
+docker-php-ext-install exif
 
 # Iniciar Apache
 apache2-foreground

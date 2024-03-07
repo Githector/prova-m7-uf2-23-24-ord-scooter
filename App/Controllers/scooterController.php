@@ -76,12 +76,11 @@ class scooterController extends Controller
                 header("Location: /scooter/index");
                 die();
             }else{ 
-                $id = $_SESSION['id_scooter']++;
                 $array = explode(".", $_FILES['img']['name']);
                 $extension = $array[count($array) - 1];
 
                 
-                $nameImg = "scooter - " . $id .  "." . $extension;
+                $nameImg = "scooter - " . uniqid() .  "." . $extension;
 
                 $src = $_FILES['img']['tmp_name'];
                 $dst = "scooters";
