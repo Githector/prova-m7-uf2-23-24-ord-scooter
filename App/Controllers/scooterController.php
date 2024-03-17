@@ -1,5 +1,6 @@
 <?php
 include_once(__DIR__ . "/../Models/Scooter.php");
+include_once(__DIR__ . "/../Models/Rent.php");
 include_once(__DIR__ . "/../Core/Store.php");
 
 use Intervention\Image\ImageManager;
@@ -16,7 +17,19 @@ class scooterController extends Controller
             die();
         }else{
             $scooterModel = new Scooter();
-            $params['scooters'] = $scooterModel->getAll();
+            $scooters = $scooterModel->getAll();
+
+            foreach ($scooters as $key => $scooter) {
+                $rentModel = new Rent();
+                $rent = $rentModel->getRentByIdScooter($scooter['id']);
+                if ($rent) {
+                    $scooters[$key]['rent'] = $rent;
+                }
+            }
+
+            $params['scooters'] = $scooters;
+
+
 
 
             if (isset($_SESSION['flash'])) {
@@ -28,8 +41,6 @@ class scooterController extends Controller
                 $params['post'] = $_SESSION['post'];
                 unset($_SESSION['post']);
             }
-
-
 
             $this->render("scooter/index", $params, "site");
         }

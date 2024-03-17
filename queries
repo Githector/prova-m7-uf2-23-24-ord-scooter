@@ -1,0 +1,13 @@
+SELECT 
+    rents.*,
+    scooters.brain,
+    scooters.model,
+    users.username
+FROM 
+    $this->model
+JOIN 
+    users ON rents.id_user = users.id
+JOIN 
+    scooters ON rents.id_scooter = scooters.id;
+
+    

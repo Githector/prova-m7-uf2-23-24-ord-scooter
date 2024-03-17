@@ -54,8 +54,8 @@ class Orm {
             $values = ":" . implode(", :",array_keys($data));
             $sql = "INSERT INTO $this->model ($columns) VALUES ($values)";  
             $db = new Database();
-            $data = $db->queryDataBase($sql, $params, true);
-            return $data;
+            $id = $db->queryDataBase($sql, $params, true);
+            return $id;
         }else{
             //modifica L'ELEMENT A LA BBDD
             $values_sql_update ="";

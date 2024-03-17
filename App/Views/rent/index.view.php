@@ -24,15 +24,15 @@
             ?>
 
                 <tr>
-                    <td class="align-middle"><?php echo $rent['scooter']['brain'] ?></td>
-                    <td class="align-middle"><?php echo $rent['scooter']['model'] ?></td>
-                    <td class="align-middle"><?php echo $rent['user'] ?></td>
-                    <td class="align-middle"><?php echo $rent['start']->format("d/m/Y - h:i:s") ?></td>
+                    <td class="align-middle"><?php echo $rent['brain'] ?></td>
+                    <td class="align-middle"><?php echo $rent['model'] ?></td>
+                    <td class="align-middle"><?php echo $rent['username'] ?></td>
+                    <td class="align-middle"><?php echo $rent['start'] ?></td>
                     <?php
                         if(!isset($rent['end'])){
                             echo "<td class='align-middle text-danger'>Not finished</td>";
                         }else{
-                            echo "<td class='align-middle'>".$rent['end']->format("d/m/Y - h:i:s")."</td>";
+                            echo "<td class='align-middle'>".$rent['end']."</td>";
                         }
 
                         if(!isset($rent['price'])){

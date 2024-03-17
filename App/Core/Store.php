@@ -4,7 +4,7 @@
 
     public static function store($src, $dst, $filename){
 
-        $url_insert = $_SERVER['DOCUMENT_ROOT'] . "/Public/Assets/" . $dst; //ruta donde se guardará el archivo
+        $url_insert = $_SERVER['DOCUMENT_ROOT'] . "/Public/Assets/" . $dst; 
         $url_target = $url_insert . "/" . $filename;
 
         if (!file_exists($url_insert)) {

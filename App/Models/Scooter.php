@@ -17,8 +17,7 @@
                 brain VARCHAR(256) NOT NULL,
                 model VARCHAR(256) NOT NULL,
                 img VARCHAR(256),
-                price FLOAT NOT NULL,
-                user_rent VARCHAR(256)
+                price FLOAT NOT NULL
                 ) ENGINE=InnoDB;";
 
 

@@ -1,9 +1,9 @@
-<h1 class="text-center mt-3 text-danger">Hello <?= $params['user'] ?>!!!</h1>
+<h1 class="text-center mt-3 text-danger">Hello <?= $params['user']['username'] ?>!!!</h1>
 
 
 
 <?php
-if ($params['user'] == 'admin') {
+if ($params['user']['username'] == 'admin') {
 ?>
 
     <form action="/scooter/store" method="post" class="col-11 col-md-9 col-lg-6 col-xl-5 p-4 mt-4 mx-auto border" enctype="multipart/form-data">
@@ -82,16 +82,16 @@ if ($params['user'] == 'admin') {
                         <td class="align-middle">
 
                             <?php
-                            if ($params['user'] == 'admin') {
+                            if ($params['user']['username'] == 'admin') {
                             ?>
                                 <a class="btn btn-danger" href="/scooter/destroy/?id=<?= $scooter['id'] ?>">Remove</a>
                                 <?php
                             } else {
-                                if ($scooter['user_rent'] != null && $scooter['user_rent'] != $params['user']) {
+                                if (isset($scooter['rent']) && $scooter['rent']['id_user'] != $params['user']['id'] && !isset($scooter['rent']['end'])) {
                                 ?>
                                     <a class="btn btn-warning disabled" href="">Not available</a>
                                 <?php
-                                } elseif ($scooter['user_rent'] == $params['user']) {
+                                } elseif (isset($scooter['rent']) && $scooter['rent']['id_user'] == $params['user']['id'] && !isset($scooter['rent']['end'])) {
                                 ?>
                                     <a class="btn btn-success" href="/rent/finish/?id_scooter=<?= $scooter['id'] ?>">Finish</a>
 

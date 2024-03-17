@@ -29,7 +29,7 @@
         <a class="text-white text-decoration-none" href="/scooter/index">Scooter | </a>
         <a class="text-white text-decoration-none" href="/main/index">LogOut | </a>
         <?php
-        if($_SESSION['user'] == 'admin'){
+        if($_SESSION['user']['username'] == 'admin'){
           ?>
           <a class="text-white text-decoration-none" href="/rent/index">Rents | </a>
           <?php

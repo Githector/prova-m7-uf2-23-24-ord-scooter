@@ -40,7 +40,7 @@
             $db = new Database();
             $result = $db->queryDataBase($sql, $params);
 
-            return $result;
+            return $result->fetch();
         }
 
         public static function createTable(){
@@ -48,16 +48,28 @@
             
             $sql = "CREATE TABLE IF NOT EXISTS ins.rents (
                 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                user VARCHAR(256) NOT NULL,
                 start DATETIME NOT NULL,
                 end DATETIME,
+                price FLOAT,
                 id_scooter INT NOT NULL,
-                FOREIGN KEY (id_scooter) REFERENCES ins.scooters(id) ON DELETE CASCADE
+                id_user INT NOT NULL,
+                FOREIGN KEY (id_scooter) REFERENCES ins.scooters(id) ON DELETE CASCADE,
+                FOREIGN KEY (id_user) REFERENCES ins.users(id) ON DELETE CASCADE
                 ) ENGINE=InnoDB;";
 
 
             $db->queryDataBase($sql);
 
+        }
+
+        public function getAllRentsWithUsername(){
+            $sql = "SELECT rents.* , scooters.brain , scooters.model , users.username
+            FROM $this->model
+            JOIN users ON rents.id_user = users.id
+            JOIN scooters ON rents.id_scooter = scooters.id";
+            $db = new Database();
+            $result = $db->queryDataBase($sql);
+            return $result->fetchAll();
         }
 
 

@@ -19,8 +19,7 @@ class userController extends Controller
             $userModel = new User();
             $result = $userModel->checkLogin($username, $pass);
             if ($result) {
-                $_SESSION['user'] = $result['username'];
-                $_SESSION['id'] = $result['id'];
+                $_SESSION['user'] = $result;
                 header("Location: /scooter/index");
                 die();
             } else {

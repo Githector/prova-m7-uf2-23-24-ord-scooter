@@ -13,7 +13,7 @@
 
                 $rent = [
                     'id_scooter' => $_GET['id_scooter'] ?? null,
-                    'user' => $_SESSION['user'],
+                    'id_user' => $_SESSION['user']['id'],
                     'start' => $start->format('Y-m-d H:i:s'),
                     'end' => null,
                 ];
@@ -24,7 +24,6 @@
                 
 
                 $scooter = $scooterModel->getById($_GET['id_scooter']);
-                $scooter['user_rent'] = $_SESSION['user'];
                 $scooterModel->insert($scooter);
 
                 header("Location: /scooter/index");
@@ -44,26 +43,25 @@
 
                 $rent = $rentModel->getRentByIdScooter($id);
 
-                echo "<pre>";
-                var_dump($rent);
-                echo "</pre>";
-
                 if(!$rent){
                     $_SESSION['flash']['error'] = "Rent not found";
                     header("Location: /scooter/index");
                     return;
                 }
 
-                $rent['end'] = new DateTime('now', new DateTimeZone("Europe/Madrid"));
-                $diff = $rent['end']->diff($rent['start']);
+                $end = new DateTime('now', new DateTimeZone("Europe/Madrid"));
+                $start = new DateTime($rent['start'], new DateTimeZone("Europe/Madrid"));
+                $rent['end'] = $end->format('Y-m-d H:i:s');
 
+
+                $diff = $start->diff($end);
                 $rent['price'] = ($diff->i * 60 + $diff->s) * $scooterModel->getById($id)['price'];
-                $rentModel->update($rent);
-                $_SESSION['flash']['ok'] = "Rent finished";
-                $scooter = $scooterModel->getById($rent['id_scooter']);
-                $scooter['user_rent'] = null;
-                $scooterModel->update($scooter);
 
+
+                $rentModel->insert($rent);
+
+                $_SESSION['flash']['ok'] = "Rent finished";
+                
 
                 header("Location: /scooter/index");
 
@@ -75,22 +73,15 @@
             public function index(){
 
 
-                if($_SESSION['user']!='admin'){
+                if($_SESSION['user']['username'] != 'admin'){
                     header("Location: /main/index");
                     return;
                 }else{
                     $rentModel = new Rent();
                     $scooterModel = new Scooter();
-                    $rents = $rentModel->getAll();
-                    $scooters = $scooterModel->getAll();
-                    $user = $_SESSION['user'];
-                    foreach ($rents as $key => $rent) {
-                        $rents[$key]['scooter'] = $scooterModel->getById($rent['id_scooter']);
-                        
-                    }
-    
+                    $rents = $rentModel->getAllRentsWithUsername();
                     $params['rents'] = $rents;
-    
+                    $params['user'] = $_SESSION['user'];
                     $this->render("rent/index", $params, "site");
                 }
 

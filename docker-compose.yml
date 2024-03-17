@@ -21,6 +21,7 @@ services:
    MYSQL_DATABASE: "ins"
    MYSQL_USER: "hector"
    MYSQL_PASSWORD: "123456"
+   TZ: "Europe/Madrid"
   ports:
    - "9999:3306"   
  phpmyadmin:
